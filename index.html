@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Commands</title>
+    <style>
+         body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #A1C4FD, #C2E9FB);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      color: #333;
+      padding: 0 20px;
+      transition: background 0.3s ease-in-out;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 1200px;
+      margin-top: 30px;
+      border-radius: 12px;
+      overflow: hidden;
+      background:#FBEAEB;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease-in-out;
+    }
+
+   .header {
+      background-color:#46211A;
+      padding: 20px;
+      text-align: center;
+      color: blue;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      font-weight: normal;
+      color: white;
+      margin-top: 10px;
+    }
+
+    .commands-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .command-card {
+      background-color: white;
+      width: 250px;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s ease-in-out, background-color 0.3s;
+      font-size: 1.35rem;
+      font-weight: bold;
+    }
+
+    .command-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      background-color: #007bff;
+      color: white;
+    }
+
+    .command-details {
+      display: none;
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 30px;
+      border-radius: 8px;
+      margin-top: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .command-details h3 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    .command-details pre {
+      background-color: #f1f1f1;
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+
+    .command-card.selected {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .command-card.selected:hover {
+      transform: translateY(0);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 1rem;
+      padding: 20px;
+      background-color:#A43820;
+      color: white;
+      width: 100%;
+      margin-top: 20px;
+     }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+
+       Linux Command Guide
+<p> HELP & INFORMATION</p>
+
+          </div>
+<div class="commands-container">
+<h3>INTRODUCTION OF LINUX</h3>
+
+
+<p> Linux is an open-source Unix-like operating system-based family on the Linux kernel, and the OS kernel was first published on 17 September 1991 by Linus Torvalds. 
+Typically, Linux is packaged as the Linux distribution, which contains the supporting libraries and system software and kernel, 
+several of which are offered by the GNU Project. Several Linux distributions use the term "Linux" in the title, 
+but the Free Software Foundation uses the "GNU/Linux" title to focus on the necessity of GNU software, causing a few controversies.
+
+Famous Linux distributions are Ubuntu, Fedora Linux, and Debian, the latter of which is composed of several different modifications and distributions, 
+including Xubuntu and Lubuntu. Commercial distributions are SUSE Linux Enterprise and Red Hat Enterprise Linux. 
+Desktop distributions of Linux are windowing systems like Wayland or X11 and desktop environments like KDE Plasma and GNOME..</p>
+</div>
+<div class="commands-container">
+<h3>TYPES OF HELP& INFORMATION COMMANDS IN LINUX</h3>
+
+
+
+
+    <div class="commands-container">
+      <div class="command-card" onclick="toggleDetails('apropos')">Apropos</div>
+      <div class="command-card" onclick="toggleDetails('info')">Info</div>
+      <div class="command-card" onclick="toggleDetails('alias')">Alias</div>
+      <div class="command-card" onclick="toggleDetails('uname')">Uname</div>
+      <div class="command-card" onclick="toggleDetails('df')">Df</div>
+      <div class="command-card" onclick="toggleDetails('du')">Du</div>
+      <div class="command-card" onclick="toggleDetails('mount')">Mount</div>
+      <div class="command-card" onclick="toggleDetails('ln')">Ln</div>
+      <div class="command-card" onclick="toggleDetails('man')">Man</div>
+    </div>
+<!-- Command Details -->
+    <div id="apropos-details" class="command-details">
+      <h3>Apropos Command</h3>
+            <p><strong>Explanation:</strong> The apropos command in Linux searches the system's manual pages for commands that match a keyword or task.apropos command helps the user when they don't remember the exact command but knows a few keywords related to the command that define its uses or functionality. It searches the Linux man page with the help of the keyword provided by the user to find the command and its functions.</p>
+<pre>syntax:apropos [OPTION..] KEYWORD..</pre>
+<p><strong>Purpose:</strong> The apropos command in Linux helps users find commands by searching the system's manual pages (man pages) for keywords or string.</p>
+      <pre>Usage Example: apropos network</pre>
+
+      
+<p><strong>Use Case:</strong> Suppose you're working on networking tasks but don’t know the exact command to use. Typing `apropos network` will return all commands related to networking (e.g., `ifconfig`, `ping`, `ip`, etc.), along with their descriptions. This is extremely helpful when exploring new topics.</p>
+ <p><strong>Screenshot:</strong> 
+<img src="apropos.png" alt="apropos Command Example" style="max-width: 100%; height: auto;">
+</div>   
+</div>
+
+<div id="info-details" class="command-details">
+      <h3>Info Command</h3>
+<p><strong>Explanation:</strong> The `info` command opens up a more detailed and structured help system, offering both high-level and in-depth descriptions of a command. Unlike `man`, which presents the content in a more linear format, `info` allows you to navigate through sections easily. It includes example usage and related information on options and flags.</p>
+<pre>syntax:info [OPTION]... [MENU-ITEM...]</pre>
+
+      <p><strong>Purpose:</strong> Provides detailed and structured documentation about commands, especially for GNU utilities.</p>
+      <pre>Usage Example: info ls</pre>
+            <p><strong>Use Case:</strong> When you need more context or detailed usage instructions for a command, such as `info ls`, this will give you a breakdown of all the available options and provide a deeper understanding of the command compared to `man` pages.</p>
+  <p><strong>screenshot:</strong> 
+<img src="info.png" alt="info Command Example" style="max-width: 100%; height: auto;">
+</div> 
+ </div>
+
+    <div id="alias-details" class="command-details">
+      <h3>Alias Command</h3>
+<p><strong>Explanation:</strong> An alias is a user-defined shorthand for a longer command or sequence of commands.
+ These aliases can be created and customized according to user preferences, making the command-line interface more user-friendly. 
+The alias command instructs the shell to replace one string with another string while executing the commands. 
+When we often have to use a single big command multiple times, in those cases, we create something called an alias for that command.
+ Alias is like a shortcut command, which will have the same functionality as if we were writing the whole command. .</p>
+<pre>syntax: alias shortname='longer command'</pre>
+      <p><strong>Purpose:</strong> Creates shortcuts for long or frequently used commands, allowing for quick execution.</p>
+      <pre>Usage Example: alias ll='ls -l'</pre>
+            <p><strong>Use Case:</strong> Alias is incredibly helpful when you often run the same commands. For instance, creating `alias update='sudo apt update && sudo apt upgrade'` helps speed up system updates by avoiding repetitive typing.</p>
+   <p><strong>screenshot:</strong>
+<img src="alias.png" alt="alias Command Example" style="max-width: 100%; height: auto;">
+</div> 
+ </div>
+
+    <div id="uname-details" class="command-details">
+      <h3>Uname Command</h3>
+      
+      <p><strong>Explanation:</strong> The `uname` command provides essential details about your system. It includes the kernel version, system name, machine type, and other identifying features. The `-a` flag displays all available information in a single output.</p>
+     <pre>Syntax:uname [OPTIONs]</pre>
+<p><strong>Purpose:</strong> Displays basic system information, such as the operating system, kernel version, and architecture.</p>
+      <pre>Usage Example: uname -a</pre>
+ <p><strong>Use Case:</strong> This command is helpful when troubleshooting hardware compatibility issues, identifying the Linux distribution, or verifying which kernel version is running on your machine. For example, `uname -r` will show the kernel version, which can be crucial when installing or configuring software.</p>
+  <p><strong>Screenshot:</strong> 
+<img src="uname.png" alt="apropos Command Example" style="max-width: 100%; height: auto;">
+</div> 
+ </div>
+
+    <div id="df-details" class="command-details">
+      <h3>Df Command</h3>
+      
+      <p><strong>Explanation:</strong> The `df` command is used to display disk space usage for mounted filesystems. By default, it shows the space in 1KB blocks, but the `-h` flag makes it more user-friendly by showing human-readable units like KB, MB, or GB.</p>
+     <pre>Syntax:df [options] [filesystems] </pre>
+<p><strong>Purpose:</strong> Displays the available and used disk space on all mounted filesystems.</p>
+      <pre>Usage Example: df -h</pre>
+ <p><strong>Use Case:</strong> This command is vital for system administrators who need to monitor available disk space on their servers. It helps ensure that file systems don’t run out of space, which could cause system issues. You can also use it to check individual partitions, such as `df /home`.</p>
+  <p><strong>screenshot:</strong> 
+<img src="df.png" alt="df Command Example" style="max-width: 100%; height: auto;">
+</div>  
+</div>
+
+    <div id="du-details" class="command-details">
+      <h3>Du Command</h3>
+     
+
+      <p><strong>Explanation:</strong> The `du` command gives a summary of the disk usage for files and directories. The `-h` flag converts the output to human-readable formats (e.g., MB, GB), while the `-s` flag gives only the total size of the specified directory or file.</p>
+    <pre>Syntax:du [options] [directory/file] </pre>
+ <p><strong>Purpose:</strong> Estimates and shows the disk usage of files and directories.</p>
+  <pre>Usage Example: du -sh /home/user</pre>    
+ <p><strong>Use Case:</strong> Use `du` to track the disk space used by a directory or file. If your disk is filling up and you need to identify large files or directories, `du -sh /var/log` can show where most space is being used.</p>
+<p><strong>Screenshot:</strong>
+<img src="du.png" alt="du Command Example" style="max-width: 100%; height: auto;">
+</div>     
+</div>
+
+    <div id="mount-details" class="command-details">
+      <h3>Mount Command</h3>
+      <p><strong>Explanation:</strong> The `mount` command is used to attach storage devices (like external hard drives or USBs) to directories in your system, making their contents accessible. For example, `mount /dev/sdb1 /mnt` mounts the device `/dev/sdb1` to the `/mnt` directory, making it available for use.</p>
+       <pre>Syntax:mount -t type <device> <directory>   </pre>
+<p><strong>Purpose:</strong> Mounts a storage device or filesystem to a specific directory in the file system tree.</p>
+      
+<pre>Usage Example: mount /dev/sdb1 /mnt</pre>
+<p><strong>Use Case:</strong> Use `mount` when adding new filesystems to your system, such as connecting a USB drive or an additional hard drive. You can specify the file system type and mount options to customize the behavior.</p>
+   <p><strong>screenshot:</strong>
+<img src="mount.png" alt="mount Command Example" style="max-width: 100%; height: auto;">
+</div> 
+ </div>
+
+    <div id="ln-details" class="command-details">
+      <h3>Ln Command</h3>
+      
+      <p><strong>Explanation:</strong> The `ln` command creates links between files. A symbolic (soft) link is like a shortcut to a file, while a hard link is essentially an additional name for the same file. Symbolic links are commonly used to link files across different directories, while hard links are often used for backup purposes.</p>
+      <pre>Syntax:ln [OPTION]... [-T] TARGET LINK_NAME  
+ln [OPTION]... TARGET... DIRECTORY     
+ln [OPTION]... -t DIRECTORY TARGET...   </pre>
+<p><strong>Purpose:</strong> Creates hard or symbolic (soft) links to files or directories.</p>
+  <pre>Usage Example: ln -s /path/to/file /path/to/link</pre>    
+<p><strong>Use Case:</strong> Use `ln` when you need to create shortcuts or references to files without duplicating data. For example, create a link to a frequently accessed configuration file in your home directory using `ln -s /etc/config.conf ~/config.conf`.</p>
+ <p><strong>screenshot:</strong> 
+<img src="ln..png" alt="ln Command Example" style="max-width: 100%; height: auto;">
+</div>   
+</div>
+
+    <div id="man-details" class="command-details">
+      <h3>Man Command</h3>
+      
+      <p><strong>Explanation:</strong> The `man` command provides detailed information about system commands, including syntax, options, and examples. It is the standard help system on Unix-like systems and is often the first place users check when they need to learn how to use a command.</p>
+    <pre>Syntax:man [option] [command] </pre>
+<p><strong>Purpose:</strong> Displays the manual page for a specified command, providing syntax and usage details.</p>
+    <pre>Usage Example: man ls</pre>   
+<p><strong>Use Case:</strong> `man ls` will provide you with a comprehensive guide to using the `ls` command, including all possible options for listing files. If you're uncertain about the usage of a command, `man` is your go-to tool.</p>
+<p><strong>screenshot:</strong> 
+<img src="man.png" alt="man Command Example" style="max-width: 100%; height: auto;">
+</div>    
+
+  </div>
+  
+  <div class="footer">
+    &copy;2025 CREATED BY MOSIN M JOSEPH. All Rights Reserved.
+  </div>
+
+  <script>
+    function toggleDetails(command) {
+      var detailsElement = document.getElementById(command + '-details');
+      if (detailsElement.style.display === 'block') {
+        detailsElement.style.display = 'none';
+      } else {
+        document.querySelectorAll('.command-details').forEach(function (el) {
+          el.style.display = 'none';
+        });
+        detailsElement.style.display = 'block';
+      }
+
+      // Toggle the selected class on the command cards
+      document.querySelectorAll('.command-card').forEach(function (el) {
+        el.classList.remove('selected');
+      });
+      document.querySelector('.command-card:nth-child(' + (Array.from(document.querySelectorAll('.command-card')).indexOf(document.querySelector('.command-card[onclick="toggleDetails(\'' + command + '\')"]')) + 1) + ')').classList.add('selected');
+    }
+  </script>
+</body>
+</html>
+
+
+    
